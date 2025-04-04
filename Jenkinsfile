@@ -9,7 +9,7 @@ pipeline {
                         sh 'cd Lab && git pull origin main'
                     } else {
                         echo 'Clonage du dépôt...'
-                        sh 'git clone https://github.com/Ibribson/projet.git Lab'
+                        sh 'git clone https://github.com/Ibribson/Lab'
                     }
                 }
             }
