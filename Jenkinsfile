@@ -3,14 +3,15 @@ pipeline {
     stages {
         stage('Cloner le projet') {
             steps {
-                echo 'Clonage du dépôt...'
-                git 'https://github.com/Ibribson/Lab'
-            }
-        }
-        stage('Construire') {
-            steps {
-                echo 'Compilation en cours...'
-                sh 'mvn clean install'  // Modifier selon la technologie
+                script {
+                    if (fileExists('Lab')) {
+                        echo 'Mise à jour du dépôt existant...'
+                        sh 'cd Lab && git pull origin main'
+                    } else {
+                        echo 'Clonage du dépôt...'
+                        sh 'git clone https://github.com/Ibribson/projet.git Lab'
+                    }
+                }
             }
         }
         stage('Déploiement') {
